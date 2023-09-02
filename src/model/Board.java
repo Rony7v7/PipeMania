@@ -155,17 +155,17 @@ public class Board {
 
         } else if(pipeLine.isHorizontal()) {
 
-            if (right != null && right.isHorizontal() && right != prevPipeLine) {
+            if (right != null && (right.isHorizontal() || right.isCircular()) && right != prevPipeLine) {
                 nextConnectedPipeLine = right;
-            } else if (left != null && left.isHorizontal() && left != prevPipeLine) {
+            } else if (left != null && (left.isHorizontal() || left.isCircular()) && left != prevPipeLine) {
                 nextConnectedPipeLine = left;
             }
 
         } else if(pipeLine.isVertical()) {
 
-            if (up != null && up.isVertical() && up != prevPipeLine) {
+            if (up != null && (up.isVertical() || up.isCircular()) && up != prevPipeLine) {
                 nextConnectedPipeLine = up;
-            } else if (down != null && down.isVertical() && down != prevPipeLine) {
+            } else if (down != null && (down.isVertical() || down.isCircular()) && down != prevPipeLine) {
                 nextConnectedPipeLine = down;
             }
 
