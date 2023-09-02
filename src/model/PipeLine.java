@@ -61,6 +61,38 @@ public class PipeLine {
         this.prev = prev;
     }
 
+    public PipeLine getUp() {
+        PipeLine aux = this;
+        boolean hasPrev = true;
+
+        for (int i = 0; i < 8 && hasPrev; i++) {
+            if (aux.getPrev() != null) {
+                aux = aux.getPrev();
+            } else {
+                hasPrev = false;
+                aux = null;
+            }
+        }
+
+        return aux;
+    }
+
+    public PipeLine getDown() {
+        PipeLine aux = this;
+        boolean hasNext = true;
+
+        for (int i = 0; i < 8 && hasNext; i++) {
+            if (aux.getNext() != null) {
+                aux = aux.getNext();
+            } else {
+                hasNext = false;
+                aux = null;
+            }
+        }
+
+        return aux;
+    }
+
     public boolean isSource() {
         return type == PipeLineType.SOURCE;
     }
