@@ -26,6 +26,7 @@ public class Board {
     public void setTail(PipeLine tail) {
         this.tail = tail;
     }
+    
     public void insertPipeLine(PipeLineType type) {
         insertPipeLine(new PipeLine(type));
     }
