@@ -123,6 +123,7 @@ public class Board {
     }
 
     public PipeLine getFirstConnectedPipeLine(PipeLine pipeLine, PipeLine prevPipeLine){
+        
         PipeLine up = pipeLine.getUp();
         PipeLine right = pipeLine.getNext();
         PipeLine down = pipeLine.getDown();
