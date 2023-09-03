@@ -25,8 +25,8 @@ public class Main{
     }
 
     public int showMainMenu(){
-        // 1. Nueva partida
-        // 2. Ver puntaje
+        System.out.println("1. Nueva partida"); 
+        System.out.println("2. Ver puntaje"); 
         // 3. Salir
 
         return 0;
