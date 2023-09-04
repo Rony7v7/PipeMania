@@ -56,8 +56,6 @@ public class Main{
 
     public void initGame(){
         boolean isActive = true;
-        //controller.createBoard();
-
 
         loginUser();
 
@@ -68,10 +66,12 @@ public class Main{
 
         } while(isActive);
 
+        //controller.endGame(username, startTime, endTime);
+
     }
 
     public void loginUser(){
-
+        //verificar si el user ya existe y preguntarle al usuario si quiere continuar o crear otro
     }
 
     public int showGameMenu() {
