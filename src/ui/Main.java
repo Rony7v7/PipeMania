@@ -64,8 +64,6 @@ public class Main{
 
     public void initGame(){
         boolean isActive = true;
-        //controller.createBoard();
-
 
         loginUser();
 
@@ -75,6 +73,8 @@ public class Main{
             isActive = execOptionGameMenu(showGameMenu());
 
         } while(isActive);
+
+        //controller.endGame(username, startTime, endTime);
 
     }
 
