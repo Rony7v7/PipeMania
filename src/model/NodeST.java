@@ -1,6 +1,6 @@
 package model;
 
-public class NodeST {
+public class NodeST{
 
     private NodeST left;
     private NodeST right;
@@ -37,7 +37,22 @@ public class NodeST {
 
     @Override
     public String toString() {
-        return "NodeST{" + "left=" + left + ", right=" + right + ", player=" + player + '}';
+        return player.toString();
     }
+
+    //CompareTo
+    public int compareTo(NodeST node){
+        return player.getScore() - node.getPlayer().getScore();        
+    }
+
+    public int compareTo(Player player){
+        int result = this.player.getScore() - player.getScore();
+        if(result == 0){
+            result = this.player.getNickname().compareTo(player.getNickname());
+        }
+
+        return result;        
+    }
+
 
 }
