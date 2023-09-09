@@ -162,23 +162,24 @@ public class Main {
                                 "\n3. Tuberia Circular (O)         " +
                                 "\n3. Vacío (X)                    " +
                                 "\n--------------------------------" +
-                                "\n5. Salir                        " +
+                                "\n4. Salir                        " +
                                 "\n--------------------------------");
 
             option = input.nextInt();
 
-            System.out.print("Ingrese la posicion de la fila (1-8): ");
-            row = input.nextInt();
-            input.nextLine();
-
-            System.out.print("Ingrese la posicion de la columna (1-8): ");
-            column = input.nextInt();
-            input.nextLine();
-
-            if (option < 0 || option > 5){
+            if (option < 0 || option > 3){
                 System.out.println("Opción inválida");
             } else {
+                System.out.print("Ingrese la posicion de la fila (1-8): ");
+                row = input.nextInt();
+                input.nextLine();
+
+                System.out.print("Ingrese la posicion de la columna (1-8): ");
+                column = input.nextInt();
+                input.nextLine();
+
                 controller.insertPipeLine(option, row, column);
+                option = 5;
             }
         }
 
