@@ -4,7 +4,7 @@ import java.sql.Time;
 import java.util.Scanner;
 import model.PipeManiaSystem;
 
-public class Main { // Falta clean board, end game in time, insert pipe with int x, int y
+public class Main {
 
     Scanner input;
     PipeManiaSystem controller;
@@ -79,7 +79,7 @@ public class Main { // Falta clean board, end game in time, insert pipe with int
 
         Time endTime = new Time(System.currentTimeMillis());
 
-        // controller.endGame(nickname, endTime.getTime() - startTime.getTime());
+        controller.endGame(nickname, endTime.getTime() - startTime.getTime());
 
     }
 
@@ -178,7 +178,7 @@ public class Main { // Falta clean board, end game in time, insert pipe with int
             if (option < 0 || option > 5){
                 System.out.println("Opción inválida");
             } else {
-                //controller.insertPipeLine(option, row, column);
+                controller.insertPipeLine(option, row, column);
             }
         }
 
