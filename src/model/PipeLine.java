@@ -9,7 +9,19 @@ public class PipeLine {
 
     public PipeLine(PipeLineType type) {
         this.type = type;
+        setImage(type);
+    }
 
+    public PipeLineType getType() {
+        return type;
+    }
+
+    public void setType(PipeLineType type) {
+        this.type = type;
+        setImage(type);
+    }
+
+    public void setImage(PipeLineType type) {
         switch(type){
             case HORIZONTAL:
                 image = "=";
@@ -35,14 +47,6 @@ public class PipeLine {
                 image = "D";
                 break;
         }
-    }
-
-    public PipeLineType getType() {
-        return type;
-    }
-
-    public void setType(PipeLineType type) {
-        this.type = type;
     }
 
     public PipeLine getNext() {
