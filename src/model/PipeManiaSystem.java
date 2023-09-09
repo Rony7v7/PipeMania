@@ -17,20 +17,27 @@ public class PipeManiaSystem {
         return board.toString();
     }
 
-    public void endGame(){
-        /*
-         1. Calcular puntaje
-         2. buscar user por username en scoreTable
-         3. si existe el user, actualizar su puntaje y acutalizar el bst
-         4. si no existe el user, crearlo y agregarlo al bst
-         */
+    public void endGame(String username, int startTime, int endTime){
+        int score = calculateScore(startTime, endTime);
+        Player player = searchPlayer(username);
+
+        if(player != null){
+            scoreTable.updateScorePlayer(player, player.getScore()+score);
+        } else {
+            player = new Player(username, score);
+            scoreTable.insertPlayer(player);
+        }
     }
 
-    public int calculateScore() { // calcula el score del board actual segun la formula, recibe un tiempo inicial y un tiempo final
+    public int calculateScore(int startTime, int endTime) { // calcula el score del board actual segun la formula, recibe un tiempo inicial y un tiempo final
         return 0;
     }
 
     public Player searchPlayer(String username) { // busca un player en el bst por username
+        /*
+         * Este metodo sirve para identificar si un usuario ya existe y asignarle los nuevos puntos a el o avisarle al
+         * usuario que el nombre ya existe. 
+         */
         return null;
     }
 
