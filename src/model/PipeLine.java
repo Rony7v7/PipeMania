@@ -28,7 +28,7 @@ public class PipeLine {
                 break;
 
             case VERTICAL:
-                image = "||";
+                image = "\u2551";
                 break;
 
             case CIRCULAR:

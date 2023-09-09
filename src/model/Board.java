@@ -79,7 +79,7 @@ public class Board {
 
     @Override
     public String toString() {
-        String board = "";
+        String board = "    0   1   2   3   4   5   6   7\n  0 ";
         PipeLine aux = head;
 
         for (int i = 0; i < 64; i++) {
@@ -87,7 +87,7 @@ public class Board {
             aux = aux.getNext();
 
             if ((i + 1) % 8 == 0) {
-                board += "\n";
+                board += (i == 63)?"\n":" \n  "+(i + 1) / 8+" ";
             }
         }
 

@@ -16,9 +16,6 @@ public class Main {
 
     public static void main(String[] args) {
         Main view = new Main();
-        System.out.println("--------------------------------");
-        System.out.println("         -PIPE-MANIA-            ");
-        System.out.println("--------------------------------");
         boolean isActive = true;
 
         do {
@@ -28,11 +25,17 @@ public class Main {
     }
 
     public int showMainMenu() {
+        System.out.println("--------------------------------");
+        System.out.println("         -PIPE-MANIA-           ");
+        System.out.println("--------------------------------");
         System.out.println("1. Nueva partida");
         System.out.println("2. Ver puntaje");
         System.out.println("3. Salir");
-        System.out.println("--------------------------------");
+
+        System.out.print(">> ");
         int option = input.nextInt();
+        input.nextLine();
+
         return option;
     }
 
@@ -84,36 +87,34 @@ public class Main {
     }
 
     public String loginUser() {
-        System.out.println("\n--------------------------------" +
-                "\n     -Ingrese su nickname-      " +
-                "\n--------------------------------");
+        System.out.println( "\n--------------------------------" +
+                            "\n     -Ingrese su nickname-      " +
+                            "\n--------------------------------");
 
         System.out.print(">> ");
-        input.nextLine();
         String nickname = input.nextLine();
 
         if (controller.searchPlayer(nickname) != null) {
-            System.out.println("\n--------------------------------" +
-                    "\n ¡Bienvenido de nuevo " + nickname + "!" +
-                    "\n--------------------------------");
+            System.out.println("--------------------------------" +
+                               "\n ¡Bienvenido de nuevo " + nickname + "!" +
+                               "\n--------------------------------");
         } else {
-            System.out.println("\n--------------------------------" +
-                    "\n ¡Bienvenido " + nickname + "!" +
-                    "\n--------------------------------");
+            System.out.println( "--------------------------------" +
+                                "\n ¡Bienvenido " + nickname + "!" +
+                                "\n--------------------------------");
         }
 
-        System.out.println("\n--------------------------------" +
-                "\n ¿Que desea hacer " + nickname + "? " +
-                "\n--------------------------------");
+        System.out.println("¿Que desea hacer " + nickname + "? \n");
 
         return nickname;
     }
 
     public int showGameMenu() {
-        System.out.println( "\n1. Poner tuberia" +
+        System.out.println( "1. Poner tuberia" +
                             "\n2. Simular flujo" +
                             "\n3. Salir");
 
+        System.out.print(">> ");
         int option = input.nextInt();
         input.nextLine();
 
@@ -160,21 +161,23 @@ public class Main {
                                 "\n1. Tuberia Horizontal (=)       " +
                                 "\n2. Tuberia Vertical (||)        " +
                                 "\n3. Tuberia Circular (O)         " +
-                                "\n3. Vacío (X)                    " +
+                                "\n4. Vacío (X)                    " +
                                 "\n--------------------------------" +
-                                "\n4. Salir                        " +
+                                "\n5. Salir                        " +
                                 "\n--------------------------------");
 
+            System.out.print(">> ");
             option = input.nextInt();
+            input.nextLine();
 
-            if (option < 0 || option > 3){
-                System.out.println("Opción inválida");
+            if (option < 1 || option > 5){
+                System.out.println("\nOpción inválida");
             } else {
-                System.out.print("Ingrese la posicion de la fila (1-8): ");
+                System.out.print("\nIngrese la posicion de la fila (0-7): ");
                 row = input.nextInt();
                 input.nextLine();
 
-                System.out.print("Ingrese la posicion de la columna (1-8): ");
+                System.out.print("Ingrese la posicion de la columna (0-7): ");
                 column = input.nextInt();
                 input.nextLine();
 
