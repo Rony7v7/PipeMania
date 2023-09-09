@@ -45,11 +45,11 @@ public class PipeManiaSystem {
         int row = Integer.parseInt(position.split(",")[0]);
         int col = Integer.parseInt(position.split(",")[1]);
 
-        //PipeLine pipeLine = board.getPipeLine(row, col);
-        
-        // if(pipeLine != null && !pipeLine.isDrainage() && !pipeLine.isSource()){
-        //     pipeLine.setType(type);
-        // }
+        PipeLine pipeLine = board.getPipeLineByXY(row, col);
+
+        if(pipeLine != null && !pipeLine.isDrainage() && !pipeLine.isSource()){
+            pipeLine.setType(type);
+        }
 
         /*
          recibe la posición en formato "x,y"
