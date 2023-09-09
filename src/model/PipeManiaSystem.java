@@ -42,6 +42,15 @@ public class PipeManiaSystem {
     }
 
     public void insertPipeLine(PipeLineType type, String position) { 
+        int row = Integer.parseInt(position.split(",")[0]);
+        int col = Integer.parseInt(position.split(",")[1]);
+
+        //PipeLine pipeLine = board.getPipeLine(row, col);
+        
+        // if(pipeLine != null && !pipeLine.isDrainage() && !pipeLine.isSource()){
+        //     pipeLine.setType(type);
+        // }
+
         /*
          recibe la posición en formato "x,y"
          separa las coordenadas con split
