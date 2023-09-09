@@ -1,9 +1,10 @@
 package ui;
 
+import java.sql.Time;
 import java.util.Scanner;
 import model.PipeManiaSystem;
 
-public class Main{
+public class Main { // Falta clean board, end game in time, insert pipe with int x, int y
 
     Scanner input;
     PipeManiaSystem controller;
@@ -20,39 +21,39 @@ public class Main{
         System.out.println("--------------------------------");
         boolean isActive = true;
 
-        do{
+        do {
             isActive = view.execOptionMainMenu(view.showMainMenu());
-        } while(isActive);
-        System.out.println("-Hasta luego :)");
+        } while (isActive);
 
     }
 
-    public int showMainMenu(){
-        System.out.println("1. Nueva partida"); 
-        System.out.println("2. Ver puntaje"); 
-        System.out.println("3. Salir"); 
+    public int showMainMenu() {
+        System.out.println("1. Nueva partida");
+        System.out.println("2. Ver puntaje");
+        System.out.println("3. Salir");
         System.out.println("--------------------------------");
-        int option=input.nextInt();
+        int option = input.nextInt();
         return option;
     }
 
     public boolean execOptionMainMenu(int option) {
         boolean isActive = true;
 
-        switch(option){
-            case 1: 
+        switch (option) {
+            case 1:
                 initGame();
                 break;
-            
-            case 2: 
+
+            case 2:
                 showScore();
                 break;
-            
-            case 3: 
+
+            case 3:
                 isActive = false;
+                System.out.println("-Hasta luego :)");
                 break;
-            
-            default:  
+
+            default:
                 System.out.println("-Opción inválida.");
                 break;
         }
@@ -60,121 +61,147 @@ public class Main{
         return isActive;
     }
 
-    //Main menu option 1 - New Game
+    // Main menu option 1 - New Game
 
-    public void initGame(){
+    public void initGame() {
         boolean isActive = true;
 
-        loginUser();
+        String nickname = loginUser();
 
-        do{
+        Time startTime = new Time(System.currentTimeMillis());
+
+        do {
             showBoard();
 
-            isActive = execOptionGameMenu(showGameMenu());
+            isActive = execOptionGameMenu(showGameMenu(), nickname);
 
-        } while(isActive);
+        } while (isActive);
 
-        //controller.endGame(username, startTime, endTime);
+        Time endTime = new Time(System.currentTimeMillis());
+
+        // controller.endGame(nickname, endTime.getTime() - startTime.getTime());
 
     }
 
-    public void loginUser(){
-        System.out.println("\n--------------------------------");
-        System.out.println("-Ingrese su nickname");
-        System.out.println("--------------------------------");
+    public String loginUser() {
+        System.out.println("\n--------------------------------" +
+                "\n     -Ingrese su nickname-      " +
+                "\n--------------------------------");
+
+        System.out.print(">> ");
         input.nextLine();
-        String nickname=input.nextLine();
-        System.out.println("\n--------------------------------");
-        System.out.println("-¿Que deseas hacer "+nickname+"?");
-        System.out.println("--------------------------------");
+        String nickname = input.nextLine();
+
+        if (controller.searchPlayer(nickname) != null) {
+            System.out.println("\n--------------------------------" +
+                    "\n ¡Bienvenido de nuevo " + nickname + "!" +
+                    "\n--------------------------------");
+        } else {
+            System.out.println("\n--------------------------------" +
+                    "\n ¡Bienvenido " + nickname + "!" +
+                    "\n--------------------------------");
+        }
+
+        System.out.println("\n--------------------------------" +
+                "\n ¿Que desea hacer " + nickname + "? " +
+                "\n--------------------------------");
+
+        return nickname;
     }
 
     public int showGameMenu() {
-        System.out.println("\n1. Poner tuberia"); 
-        System.out.println("2. Simular"); 
-        System.out.println("3. Salir"); 
-        int option2=input.nextInt();
-        return option2;
+        System.out.println( "\n1. Poner tuberia" +
+                            "\n2. Simular flujo" +
+                            "\n3. Salir");
+
+        int option = input.nextInt();
+        input.nextLine();
+
+        return option;
     }
 
-    public boolean execOptionGameMenu(int option) {
+    public boolean execOptionGameMenu(int option, String nickname) {
         boolean isActive = true;
 
-        switch(option){
-            case 1: insertPipe();;
+        switch (option) {
+            case 1:
+                insertPipe();
                 break;
-            
-            case 2: simulateFlow();;
+
+            case 2:
+                isActive = !simulateFlow();
                 break;
-            
-            case 3: isActive = false;
+
+            case 3:
+                isActive = false;
                 break;
-            
-            default: System.out.println("Opción inválida.");
+
+            default:
+                System.out.println("Opción inválida.");
                 break;
         }
 
         return isActive;
     }
 
-    public void showBoard(){
-
+    public void showBoard() {
+        System.out.println(controller.boardToString());
     }
 
-        //Game menu Option 1 - Insert Pipe
-    public void insertPipe(){
-        boolean flag=true;
-            int fila=-1;
-            int columna=-1;
-            while(flag==true){
-                System.out.println("\n--------------------------------");
-                System.out.println("          (INSERTAR)           ");
-                System.out.println("\n1. (=) Tuberia Horizontal");
-                System.out.println("2. (||) Tuberia Vertical");
-                System.out.println("3. (O) Tuberia Circular");
-                System.out.println("--------------------------------");
-                System.out.println("4. Editar o eliminar tuberia");
-                System.out.println("5. Salir");
-                System.out.println("--------------------------------");    
-                int opcionInsert=input.nextInt();
-                if(opcionInsert==5){
-                    return;
-                }else{
-                    System.out.println("Ingrese la posicion de la fila");
-                    fila=input.nextInt();
-                    System.out.println("Ingrese la posicion de la columna");
-                    columna=input.nextInt();
-                    if(opcionInsert>0||opcionInsert<3){
-                        //controller.insertarTuberia
-                    }else if(opcionInsert==4){
-                        editEliminate(fila, columna);
-                    }else{
-                        System.out.println("Opcion invalida");
-                    }
-                }
+    // Game menu Option 1 - Insert Pipe
+    public void insertPipe() {
+
+        int option = 0;
+        int row, column;
+
+        while (option != 5) {
+            System.out.println( "\n--------------------------------" +
+                                "\n          (INSERTAR)            " +
+                                "\n1. Tuberia Horizontal (=)       " +
+                                "\n2. Tuberia Vertical (||)        " +
+                                "\n3. Tuberia Circular (O)         " +
+                                "\n3. Vacío (X)                    " +
+                                "\n--------------------------------" +
+                                "\n5. Salir                        " +
+                                "\n--------------------------------");
+
+            option = input.nextInt();
+
+            System.out.print("Ingrese la posicion de la fila (1-8): ");
+            row = input.nextInt();
+            input.nextLine();
+
+            System.out.print("Ingrese la posicion de la columna (1-8): ");
+            column = input.nextInt();
+            input.nextLine();
+
+            if (option < 0 || option > 5){
+                System.out.println("Opción inválida");
+            } else {
+                //controller.insertPipeLine(option, row, column);
             }
-    }
-            
-            
-    public void editEliminate(int fila, int columna){
+        }
 
     }
-              
-        //Aqui se permite insertar, editar o eliminar tuberías (Reemplazar un pos x,y por una pipe [X, o, ||, =]  )
 
+    // Game meun Option 2 - Simulate Flow
+    public boolean simulateFlow() {
+        boolean isCorrect = controller.simulateFlow();
 
-        //Game meun Option 2 - Simulate Flow
-    public void simulateFlow(){
         System.out.println("-Simulacion de Tuberias-");
-        //controller.simulateFlow()  ---> boolean
+        if (isCorrect) {
+            System.out.println("¡Felicidades! Ha ganado el juego");
+        } else {
+            System.out.println("Lo sentimos, la simulacion es incorrecta, vuelva a intentarlo");
+        }
+
+        return isCorrect;
     }
 
-    //Main menu Option 2 - 
+    // Main menu Option 2 -
     public void showScore() {
-        System.out.println("Este es su puntaje");
-        //controller.getScore(); ----> String
+        System.out.println("-Tabla de puntajes-");
+        System.out.println(controller.scoreTableToString());
     }
-
-
 
 }
