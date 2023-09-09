@@ -27,6 +27,9 @@ public class PipeManiaSystem {
             player = new Player(username, score);
             scoreTable.insertPlayer(player);
         }
+
+        board.initBoard();
+
     }
 
     public int calculateScore(Long gameTime) { // calcula el score del board actual segun la formula, recibe un tiempo
