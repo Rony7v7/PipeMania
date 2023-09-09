@@ -42,7 +42,6 @@ public class Board {
         }
     }
 
-
     public void initBoard() {
         boolean sourceFlag = false;
         boolean drainageFlag = false;
@@ -175,6 +174,23 @@ public class Board {
 
         return nextConnectedPipeLine;
     
+    }
+
+    public PipeLine getPipeLineByXY(int x, int y){
+        PipeLine aux = head;
+        boolean found = false;
+
+        for(int i = 0; i < 64 && !found; i++){
+            if(i == x*8 + y){
+                found = true;
+            } else {
+                aux = aux.getNext();
+            }
+        }
+
+        if(!found) aux = null;
+
+        return aux;
     }
 
 }
