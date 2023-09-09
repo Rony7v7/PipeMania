@@ -108,10 +108,6 @@ public class Board {
 
             PipeLine nextConnectedPipeLine = getFirstConnectedPipeLine(pipeLine, prevPipeLine);
 
-            if(nextConnectedPipeLine == null){
-                return false;
-            }
-            
             return simulateFlow(nextConnectedPipeLine, pipeLine);
 
         }
@@ -163,17 +159,17 @@ public class Board {
 
         } else if(pipeLine.isHorizontal()) {
 
-            if (right != null && (right.isHorizontal() || right.isCircular()) && right != prevPipeLine) {
+            if (right != null && (right.isHorizontal() || right.isCircular() || right.isDrainage()) && right != prevPipeLine) {
                 nextConnectedPipeLine = right;
-            } else if (left != null && (left.isHorizontal() || left.isCircular()) && left != prevPipeLine) {
+            } else if (left != null && (left.isHorizontal() || left.isCircular() || left.isDrainage()) && left != prevPipeLine) {
                 nextConnectedPipeLine = left;
             }
 
         } else if(pipeLine.isVertical()) {
 
-            if (up != null && (up.isVertical() || up.isCircular()) && up != prevPipeLine) {
+            if (up != null && (up.isVertical() || up.isCircular() || up.isDrainage()) && up != prevPipeLine) {
                 nextConnectedPipeLine = up;
-            } else if (down != null && (down.isVertical() || down.isCircular()) && down != prevPipeLine) {
+            } else if (down != null && (down.isVertical() || down.isCircular() || down.isDrainage()) && down != prevPipeLine) {
                 nextConnectedPipeLine = down;
             }
 
