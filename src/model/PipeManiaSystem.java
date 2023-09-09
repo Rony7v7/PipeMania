@@ -17,8 +17,8 @@ public class PipeManiaSystem {
         return board.toString();
     }
 
-    public void endGame(String username, int startTime, int endTime){
-        int score = calculateScore(startTime, endTime);
+    public void endGame(String username, Long gameTime) {
+        int score = calculateScore(gameTime);
         Player player = searchPlayer(username);
 
         if(player != null){
@@ -29,7 +29,7 @@ public class PipeManiaSystem {
         }
     }
 
-    public int calculateScore(int startTime, int endTime) { // calcula el score del board actual segun la formula, recibe un tiempo inicial y un tiempo final
+    public int calculateScore(Long gameTime) { // calcula el score del board actual segun la formula, recibe un tiempo
         return 0;
     }
 
@@ -41,10 +41,8 @@ public class PipeManiaSystem {
         return null;
     }
 
-    public void insertPipeLine(PipeLineType type, String position) { 
-        int row = Integer.parseInt(position.split(",")[0]);
-        int col = Integer.parseInt(position.split(",")[1]);
-
+    public void insertPipeLine(PipeLineType type, int row, int col) { 
+        
         PipeLine pipeLine = board.getPipeLineByXY(row, col);
 
         if(pipeLine != null && !pipeLine.isDrainage() && !pipeLine.isSource()){
@@ -52,8 +50,6 @@ public class PipeManiaSystem {
         }
 
         /*
-         recibe la posición en formato "x,y"
-         separa las coordenadas con split
          revisa si las cordenadas no son pipelines Source ni Drainage
          reemplaza la pipeLine en la posición indicada por el tipo de pipeLine recibido
          *Este metodo es el mismo para eliminar y editar*

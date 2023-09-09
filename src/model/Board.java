@@ -49,6 +49,8 @@ public class Board {
         int sourcePosition = (int) (Math.random() * 64);
         int drainagePosition = (int) (Math.random() * 64);
 
+        cleanBoard();
+
         while (sourcePosition == drainagePosition) {
             drainagePosition = (int) (Math.random() * 64);
         }
@@ -68,6 +70,11 @@ public class Board {
             }
             
         }
+    }
+
+    public void cleanBoard() {
+        head = null;
+        tail = null;
     }
 
     @Override
