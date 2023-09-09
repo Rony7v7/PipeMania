@@ -41,7 +41,23 @@ public class PipeManiaSystem {
         return null;
     }
 
-    public void insertPipeLine(PipeLineType type, int row, int col) { 
+    public void insertPipeLine(int intType, int row, int col) { 
+        PipeLineType type = null;
+
+        switch(intType){
+            case 1:
+                type = PipeLineType.HORIZONTAL;
+                break;
+            case 2:
+                type = PipeLineType.VERTICAL;
+                break;
+            case 3:
+                type = PipeLineType.CIRCULAR;
+                break;
+            case 4:
+                type = PipeLineType.VOID;
+                break;
+        }
         
         PipeLine pipeLine = board.getPipeLineByXY(row, col);
 
