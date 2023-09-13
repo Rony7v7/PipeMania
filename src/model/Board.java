@@ -131,7 +131,7 @@ public class Board {
         PipeLine down = pipeLine.getDown();
         PipeLine left = pipeLine.getPrev();
 
-        PipeLine nextConnectedPipeLine = null;
+        PipeLine nextConnectedPipeLine = new PipeLine(PipeLineType.VOID);
 
         if(pipeLine.isSource()) {
 
