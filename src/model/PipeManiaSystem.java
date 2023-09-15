@@ -1,22 +1,43 @@
 package model;
 
+/**
+ * The PipeManiaSystem class represents the main system of the Pipe Mania Game. Manage the game
+ * board, scoring and game-related operations
+ */
 public class PipeManiaSystem {
+    // Game board
     Board board;
+    // Score table
     ScoreTable scoreTable;
 
+    /**
+     * Create a new instance of PipeManiaSystem by initializing the game board and scoreboard
+     */
     public PipeManiaSystem() {
         board = new Board();
         scoreTable = new ScoreTable();
     }
 
-    public void createBoard() {
+   /**
+     * Create a new gamer board
+     */
+     public void createBoard() {
         board.initBoard();
     }
 
+    /**
+     * Gets a text string representation of the game board
+     * @return The text string representation of the game board
+     */
     public String boardToString() {
         return board.toString();
     }
 
+    /**
+     * Finish the game, calculate the score and update the scoreboard
+     * @param username The player is username
+     * @param gameTime Game time
+     */
     public void endGame(String username, Long gameTime) {
         int score = calculateScore(gameTime);
         Player player = searchPlayer(username);
@@ -32,11 +53,21 @@ public class PipeManiaSystem {
 
     }
 
-    public int calculateScore(Long gameTime) { // calcula el score del board actual segun la formula, recibe un tiempo
+    /**
+     * Calculates the score of the current game board based on the game time
+     * @param gameTime Game time
+     * @return The calculated score
+     */
+    public int calculateScore(Long gameTime) {
         return 0;
     }
 
-    public Player searchPlayer(String username) { // busca un player en el bst por username
+    /**
+     * Search for a player by username in the scoreboard
+     * @param username The username of the player to search
+     * @return The player found or null if not found
+     */
+    public Player searchPlayer(String username) { 
         /*
          * Este metodo sirve para identificar si un usuario ya existe y asignarle los nuevos puntos a el o avisarle al
          * usuario que el nombre ya existe. 
@@ -44,6 +75,12 @@ public class PipeManiaSystem {
         return null;
     }
 
+    /**
+     * Inserts a type of pipe into a position on the game board
+     * @param intType The type of pipe to be inserted (1: Horizontal, 2: Vertical, 3: Circular, 4: Empty)
+     * @param row The row in which the pipe will be inserted
+     * @param col The column in which the pipe will be inserted
+     */
     public void insertPipeLine(int intType, int row, int col) { 
         PipeLineType type = null;
 
@@ -75,10 +112,18 @@ public class PipeManiaSystem {
          */
     }
 
+    /**
+     * Simulates the flow of water on the game board
+     * @return 'true' if the flow was successful, 'false' otherwise
+     */
     public boolean simulateFlow() {
         return board.simulateFlow();
     }
 
+    /**
+     * Gets a text string representation of the scores table
+     * @return The text string representation of the socres table
+     */
     public String scoreTableToString() {
         return scoreTable.toString();
     }

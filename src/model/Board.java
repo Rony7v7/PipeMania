@@ -1,36 +1,69 @@
 package model;
 
+/**
+ * The Board class represents the game board in the Pipe Mania game, COntains pipelines and
+ * logic related to board management
+ */
 public class Board {
     
+    // Initial board pipe
     private PipeLine head;
+    // Final board pipe
     private PipeLine tail;
 
+    /**
+     * Create a new Board instance and initialize the board by calling (initBoard())
+     */
     public Board() {
 
         initBoard();
         
     }
 
-    public PipeLine getHead() {
+    /**
+     * Gets the starting pipe from the board
+     * @return The initial pipe
+     */
+      public PipeLine getHead() {
         return head;
     }
 
+    /**
+     * Sets the initial pipeline of the board
+     * @param head The new initial pipe
+     */
     public void setHead(PipeLine head) {
         this.head = head;
     }
 
+    /**
+     * Gest the final pipe from the board
+     * @return The final pipe
+     */
     public PipeLine getTail() {
         return tail;
     }
 
+    /**
+     * Sets the final pipeline of board
+     * @param tail The new final pipe
+     */
     public void setTail(PipeLine tail) {
         this.tail = tail;
     }
     
+    /**
+     * Insert a pipe of specific type into the board
+     * @param type The type of pipe to insert
+     */
     public void insertPipeLine(PipeLineType type) {
         insertPipeLine(new PipeLine(type));
     }
     
+    /**
+     * Insert a pipe into the board
+     * @param pipeLine The pipe to insert
+     */
     public void insertPipeLine(PipeLine pipeLine) {
         if (head == null) {
             head = pipeLine;
@@ -42,6 +75,9 @@ public class Board {
         }
     }
 
+    /**
+     * Initialize the game board with pipes, including a random source and drain
+     */
     public void initBoard() {
         boolean sourceFlag = false;
         boolean drainageFlag = false;
@@ -72,11 +108,18 @@ public class Board {
         }
     }
 
+    /**
+     * Clean the board and removing all the pipes
+     */
     public void cleanBoard() {
         head = null;
         tail = null;
     }
 
+    /**
+     * Gets a text string representation of the game board
+     * @return The text string representation of the game board
+     */
     @Override
     public String toString() {
         String board = "    0   1   2   3   4   5   6   7\n  0 ";
@@ -94,10 +137,20 @@ public class Board {
         return board;
     }
 
+    /**
+     * Simulates the flow of water on the game board
+     * @return 'true' if the flow reaches the drain, or 'false' otherwise
+     */
     public boolean simulateFlow(){
         return simulateFlow(getSource(), null);
     }
  
+    /**
+     * Simulates the flow of water on the game board from a given pipe
+     * @param pipeLine The pipe from which the flow is started
+     * @param prevPipeLine The previous pipe in the flow direction 
+     * @return 'true' if the flow reaches the drain, or 'false' otherwise
+     */
     private boolean simulateFlow(PipeLine pipeLine, PipeLine prevPipeLine){
 
         if(pipeLine.isDrainage()){
@@ -114,6 +167,10 @@ public class Board {
 
     }
 
+    /**
+     * Gets tge origin Source pipe on the game board
+     * @return The source pipe
+     */
     public PipeLine getSource(){
         PipeLine aux = head;
 
@@ -124,6 +181,12 @@ public class Board {
         return aux;
     }
 
+    /**
+     * Gets the first pipe connected to the current pipe, following the direction of water flow
+     * @param pipeLine The current pipe
+     * @param prevPipeLine The previous pipe in the flow direction 
+     * @return The first connected pipe in the direction of flow
+     */
     public PipeLine getFirstConnectedPipeLine(PipeLine pipeLine, PipeLine prevPipeLine){
         
         PipeLine up = pipeLine.getUp();
@@ -179,6 +242,12 @@ public class Board {
     
     }
 
+    /**
+     * Gets a pipe at position specified by its coordinates (row and column)
+     * @param x The pipe row
+     * @param y The pipe column
+     * @return The pipe at the specified coordinates  
+     */
     public PipeLine getPipeLineByXY(int x, int y){
         PipeLine aux = head;
         boolean found = false;

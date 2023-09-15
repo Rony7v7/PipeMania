@@ -4,9 +4,21 @@ import java.sql.Time;
 import java.util.Scanner;
 import model.PipeManiaSystem;
 
+
+/**
+ * The 'main' class represents the main interface of the Pipe Mania game. Allows
+ * the Users interacat with the game, start new games, view scores and perform in-game actions
+*/
 public class Main {
 
+    /**
+     * Scanner used for user input
+     */
     Scanner input;
+
+    /**
+     * Pipe Mania System Controller
+     */
     PipeManiaSystem controller;
 
     public Main() {
@@ -14,7 +26,11 @@ public class Main {
         controller = new PipeManiaSystem();
     }
 
-    public static void main(String[] args) {
+   /**
+    * Main methos of the applicatio. Create as instance of the 'Main' class to handle the game loop
+     * @param args Coummand line arguments not used
+     */
+     public static void main(String[] args) {
         Main view = new Main();
         boolean isActive = true;
 
@@ -24,6 +40,10 @@ public class Main {
 
     }
 
+    /**
+     * Dysplays the main menu of the game and allows the user to select an option
+     * @return The opction selected for the user
+     */
     public int showMainMenu() {
         System.out.println("--------------------------------");
         System.out.println("         -PIPE-MANIA-           ");
@@ -39,6 +59,10 @@ public class Main {
         return option;
     }
 
+    /**
+     * @param option The option selected for the user
+     * @return 'true' if the game should continue running, 'false' if the user chooses to exit
+     */
     public boolean execOptionMainMenu(int option) {
         boolean isActive = true;
 
@@ -64,8 +88,9 @@ public class Main {
         return isActive;
     }
 
-    // Main menu option 1 - New Game
-
+    /**
+     * Start a new game of the game
+     */
     public void initGame() {
         boolean isActive = true;
 
@@ -86,6 +111,10 @@ public class Main {
 
     }
 
+    /**
+     * Allows the user to enter their username
+     * @return The username entered
+     */
     public String loginUser() {
         System.out.println( "\n--------------------------------" +
                             "\n     -Ingrese su nickname-      " +
@@ -109,6 +138,10 @@ public class Main {
         return nickname;
     }
 
+    /**
+     * Displays the game menu and allows the user to select an option
+     * @return the option selected by the user
+     */
     public int showGameMenu() {
         System.out.println( "1. Poner tuberia" +
                             "\n2. Simular flujo" +
@@ -121,6 +154,12 @@ public class Main {
         return option;
     }
 
+    /**
+     * Execute the option selected in the game menu
+     * @param option The option selected by the user
+     * @param nickname The player is username
+     * @return 'true' if the gmae should continue running, 'false' if the user chooses to exit
+     */
     public boolean execOptionGameMenu(int option, String nickname) {
         boolean isActive = true;
 
@@ -145,11 +184,17 @@ public class Main {
         return isActive;
     }
 
+    /**
+     * Shows the game board
+     */
     public void showBoard() {
         System.out.println(controller.boardToString());
     }
 
-    // Game menu Option 1 - Insert Pipe
+   
+    /**
+     * Allows the user to insert a Pipe into the board
+     */
     public void insertPipe() {
 
         int option = 0;
@@ -188,7 +233,10 @@ public class Main {
 
     }
 
-    // Game meun Option 2 - Simulate Flow
+    /**
+     * Simulates the flow of pipes on the board and pisplays the result
+     * @return 'true' if the simulation is correct, 'false' if it is incorrect
+     */
     public boolean simulateFlow() {
         boolean isCorrect = controller.simulateFlow();
 
@@ -202,7 +250,10 @@ public class Main {
         return isCorrect;
     }
 
-    // Main menu Option 2 -
+   
+    /**
+     * Shows the game score table
+     */
     public void showScore() {
         System.out.println("-Tabla de puntajes-");
         System.out.println(controller.scoreTableToString());
