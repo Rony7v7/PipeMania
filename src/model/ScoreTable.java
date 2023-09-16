@@ -44,7 +44,7 @@ public class ScoreTable {
     }
 
    /**
-     * Private method to insert a player recurively into the tree
+     * Private method to insert a player recursively into the tree
      * @param pointer The current node in the insertion process
      * @param player The player to be inserted
      */
@@ -102,7 +102,7 @@ public class ScoreTable {
     }
 
     /**
-     * COnvert the scoreboard to a text string
+     * Convert the scoreboard to a text string
      * @return The representation of the scores table in the form of a text string
      */
     public String toString() {
@@ -141,7 +141,6 @@ public class ScoreTable {
         
     }
 
-    //getSuccessor
     /**
      * Gets the successor of a given node in the tree
      * @param pointer The node for which the successor is to be found 

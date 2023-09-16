@@ -7,7 +7,11 @@ import model.PipeManiaSystem;
 
 /**
  * The 'main' class represents the main interface of the Pipe Mania game. Allows
- * the Users interacat with the game, start new games, view scores and perform in-game actions
+ * the Users interact with the game, start new games, view scores and perform in-game actions
+ * 
+ * 
+ * @author Rony Ordoñez, Alexis Delgado, Damy Villegas
+ *
 */
 public class Main {
 
@@ -21,13 +25,16 @@ public class Main {
      */
     PipeManiaSystem controller;
 
+    /**
+     * Create a new instance of the 'Main' class by initializing the scanner and the controller
+     */
     public Main() {
         input = new Scanner(System.in);
         controller = new PipeManiaSystem();
     }
 
    /**
-    * Main methos of the applicatio. Create as instance of the 'Main' class to handle the game loop
+    * Main methods of the application. Create as instance of the 'Main' class to handle the game loop
      * @param args Coummand line arguments not used
      */
      public static void main(String[] args) {
@@ -60,6 +67,7 @@ public class Main {
     }
 
     /**
+     * Execute the option selected in the main menu
      * @param option The option selected for the user
      * @return 'true' if the game should continue running, 'false' if the user chooses to exit
      */

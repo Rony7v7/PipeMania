@@ -31,8 +31,8 @@ public class Player {
     }
 
     /**
-     * Set the player is nickname
-     * @param newNickname Thw new player nickname
+     * Set the player's nickname
+     * @param newNickname The new player nickname
      */
     public void setNickname(String newNickname) {
         nickname = newNickname;

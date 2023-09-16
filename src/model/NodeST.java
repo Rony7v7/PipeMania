@@ -1,7 +1,7 @@
 package model;
 
 /**
- * The NodeST class represents a node used in the binaru search tree data structure which is used in the game's
+ * The NodeST class represents a node used in the binary search tree data structure which is used in the game's
  * score table. Each node contains a reference to a player and links to the left and rigth child nodes.
  */
 
@@ -38,8 +38,8 @@ public class NodeST{
         this.left = left;
     }
 
-   /**
-    * Gets the right child node
+    /**
+     * Gets the right child node
      * @return The right child node
      */
      public NodeST getRight() {
@@ -79,7 +79,6 @@ public class NodeST{
         return player.toString();
     }
 
-    //CompareTo
     /**
      * Compare the current node with another node based on players' score
      * @param node The node to compare with
@@ -104,6 +103,5 @@ public class NodeST{
 
         return result;        
     }
-
 
 }

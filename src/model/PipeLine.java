@@ -156,7 +156,7 @@ public class PipeLine {
     }
 
     /**
-     * c
+     * Checks if the pipe is DRAINAGE type
      * @return true' if this is a drain pipe, 'false' otherwise
      */
     public boolean isDrainage() {
