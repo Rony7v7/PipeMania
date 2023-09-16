@@ -279,9 +279,9 @@ public class Main {
      */
     public void showScore() {
         System.out.println(colorMorado+"\n══════════════════════════════════"+resetColor);
-        System.out.println("-Tabla de puntajes-");
+        System.out.println("- Tabla de puntajes \n-");
         System.out.println(controller.scoreTableToString());
-        System.out.println(colorMorado+"\n══════════════════════════════════"+resetColor);
+        System.out.println(colorMorado+"══════════════════════════════════"+resetColor);
     }
 
 }
