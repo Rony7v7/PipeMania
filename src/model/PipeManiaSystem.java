@@ -59,7 +59,19 @@ public class PipeManiaSystem {
      * @return The calculated score
      */
     public int calculateScore(Long gameTime) {
-        return 0;
+        int score = 0;
+
+        if (simulateFlow()) score = (int)(((100 - countUsedPipes()) * 10) - gameTime/1000);
+
+        return score;
+    }
+
+    /**
+     * Gets the number of pipes used in the game board
+     * @return The number of pipes used in the game board
+     */
+    public int countUsedPipes(){
+        return board.countUsedPipes();
     }
 
     /**

@@ -265,4 +265,22 @@ public class Board {
         return aux;
     }
 
+    /**
+     * Gets the number of pipes used in the game board
+     * @return The number of pipes used in the game board
+     */
+    public int countUsedPipes(){
+        int count = 0;
+        PipeLine aux = head;
+
+        while(aux != null){
+            if(!aux.isVoid() && !aux.isSource() && !aux.isDrainage()){
+                count++;
+            }
+            aux = aux.getNext();
+        }
+
+        return count;
+    }
+
 }
