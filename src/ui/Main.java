@@ -20,6 +20,14 @@ public class Main {
      * Pipe Mania System Controller
      */
     PipeManiaSystem controller;
+    static String colorMorado= "\u001B[35m";
+    static String resetColor = "\u001B[0m";
+    static String colorVerde="\u001B[32m";
+    static String colorAzul="\u001B[36m";
+    static String colorAmarillo="\u001B[33m";
+    static String colorRojo= "\u001B[31m";
+    
+
 
     public Main() {
         input = new Scanner(System.in);
@@ -45,12 +53,12 @@ public class Main {
      * @return The opction selected for the user
      */
     public int showMainMenu() {
-        System.out.println("--------------------------------");
-        System.out.println("         -PIPE-MANIA-           ");
-        System.out.println("--------------------------------");
-        System.out.println("1. Nueva partida");
-        System.out.println("2. Ver puntaje");
-        System.out.println("3. Salir");
+        System.out.println(colorMorado+"╔══════════════════════╗\n"
+                                     +"║"+resetColor+"      Pipe"+colorMorado+"-"+resetColor+"Mania      "+colorMorado+"║\n"
+                                    + "╚══════════════════════╝"+resetColor);
+        System.out.println(colorVerde+"1."+resetColor+" Nueva partida");
+        System.out.println(colorVerde+"2."+resetColor+" Ver puntaje");
+        System.out.println(colorAzul+"3."+resetColor+" Salir");
 
         System.out.print(">> ");
         int option = input.nextInt();
@@ -116,25 +124,25 @@ public class Main {
      * @return The username entered
      */
     public String loginUser() {
-        System.out.println( "\n--------------------------------" +
-                            "\n     -Ingrese su nickname-      " +
-                            "\n--------------------------------");
+        System.out.println(colorMorado+"╔══════════════════════╗");
+        System.out.println(            "║"+resetColor+" Ingrese su Nickname  "+colorMorado+"║");
+        System.out.println(            "╚══════════════════════╝"+resetColor);
 
         System.out.print(">> ");
         String nickname = input.nextLine();
 
         if (controller.searchPlayer(nickname) != null) {
-            System.out.println("--------------------------------" +
-                               "\n ¡Bienvenido de nuevo " + nickname + "!" +
-                               "\n--------------------------------");
+            System.out.println( colorAmarillo+"---------------------------------------" +resetColor+
+                                "\n ¡Bienvenido de nuevo " + nickname + "!" +colorAmarillo+
+                                "\n---------------------------------------"+resetColor);
         } else {
-            System.out.println( "--------------------------------" +
-                                "\n ¡Bienvenido " + nickname + "!" +
-                                "\n--------------------------------");
+            System.out.println( colorAmarillo+"----------------------------------" +resetColor+
+                                "\n         "+colorRojo+"¡"+resetColor+"Bienvenido " + nickname + colorRojo+"!" +resetColor+
+                                colorAmarillo+"\n----------------------------------"+resetColor);
         }
-
-        System.out.println("¿Que desea hacer " + nickname + "? \n");
-
+        System.out.println(colorMorado+"    ╔═════════════════════════╗"+resetColor);
+        System.out.println("      ¿Que desea hacer " + nickname + "?");
+        System.out.println(colorMorado+"    ╚═════════════════════════╝"+resetColor);
         return nickname;
     }
 
@@ -143,9 +151,10 @@ public class Main {
      * @return the option selected by the user
      */
     public int showGameMenu() {
-        System.out.println( "1. Poner tuberia" +
-                            "\n2. Simular flujo" +
-                            "\n3. Salir");
+        System.out.println(colorMorado+"══════════════════════════════════"+resetColor);
+        System.out.println( colorVerde+"1"+resetColor+". Poner tuberia" +
+                            colorVerde+"\n2"+resetColor+". Simular flujo" +
+                            colorRojo+"\n3"+resetColor+". Salir :(");
 
         System.out.print(">> ");
         int option = input.nextInt();
@@ -201,15 +210,15 @@ public class Main {
         int row, column;
 
         while (option != 5) {
-            System.out.println( "\n--------------------------------" +
-                                "\n          (INSERTAR)            " +
-                                "\n1. Tuberia Horizontal (=)       " +
-                                "\n2. Tuberia Vertical (||)        " +
-                                "\n3. Tuberia Circular (O)         " +
-                                "\n4. Vacío (X)                    " +
-                                "\n--------------------------------" +
+            System.out.println(colorMorado+"═════════════════════════"+resetColor+
+                                "\n        (INSERTAR)            " +
+                                "\n\n1. Tuberia Horizontal ("+colorAmarillo+"="+resetColor+")       " +
+                                "\n2. Tuberia Vertical ("+colorRojo+"\u2551"+resetColor+")        " +
+                                "\n3. Tuberia Circular ("+colorVerde+"O"+resetColor+")         " +
+                                "\n4. Vacío (X)                    " +colorMorado+
+                                colorMorado+"\n═════════════════════════" +resetColor+
                                 "\n5. Salir                        " +
-                                "\n--------------------------------");
+                                colorMorado+"\n═════════════════════════"+resetColor);
 
             System.out.print(">> ");
             option = input.nextInt();
@@ -225,7 +234,7 @@ public class Main {
                 System.out.print("Ingrese la posicion de la columna (0-7): ");
                 column = input.nextInt();
                 input.nextLine();
-
+                System.out.println(colorMorado+"\n══════════════════════════════════"+resetColor);
                 controller.insertPipeLine(option, row, column);
                 option = 5;
             }
@@ -244,7 +253,9 @@ public class Main {
         if (isCorrect) {
             System.out.println("¡Felicidades! Ha ganado el juego");
         } else {
-            System.out.println("Lo sentimos, la simulacion es incorrecta, vuelva a intentarlo");
+            System.out.println("\nLo sentimos, la simulacion es incorrecta"+
+                               "\n        Vuelve a intentarlo");
+            System.out.println(colorMorado+"\n══════════════════════════════════"+resetColor);
         }
 
         return isCorrect;
@@ -255,8 +266,10 @@ public class Main {
      * Shows the game score table
      */
     public void showScore() {
+        System.out.println(colorMorado+"\n══════════════════════════════════"+resetColor);
         System.out.println("-Tabla de puntajes-");
         System.out.println(controller.scoreTableToString());
+        System.out.println(colorMorado+"\n══════════════════════════════════"+resetColor);
     }
 
 }

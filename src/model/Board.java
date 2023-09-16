@@ -10,6 +10,8 @@ public class Board {
     private PipeLine head;
     // Final board pipe
     private PipeLine tail;
+    static String verdeClaro= "\u001B[38;5;82m";
+    static String resetColor = "\u001B[0m";
 
     /**
      * Create a new Board instance and initialize the board by calling (initBoard())
@@ -122,15 +124,15 @@ public class Board {
      */
     @Override
     public String toString() {
-        String board = "    0   1   2   3   4   5   6   7\n  0 ";
+        String board =verdeClaro+ "    0   1   2   3   4   5   6   7\n  0 "+resetColor;
         PipeLine aux = head;
 
         for (int i = 0; i < 64; i++) {
-            board += aux.toString() + "   ";
+            board +=aux.toString() + "   ";
             aux = aux.getNext();
 
             if ((i + 1) % 8 == 0) {
-                board += (i == 63)?"\n":" \n  "+(i + 1) / 8+" ";
+                board +=(i == 63)?"\n":" \n  "+verdeClaro+(i + 1) / 8+" "+resetColor;
             }
         }
 

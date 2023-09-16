@@ -12,6 +12,12 @@ public class PipeLine {
     // The graphic representation of the pipes
     private String image;
 
+    static String colorRojo= "\u001B[31m";
+    static String resetColor = "\u001B[0m";
+    static String colorAzul="\u001B[36m";
+    static String colorVerde="\u001B[32m";
+    static String colorAmarillo="\u001B[33m";
+
     // Next adjacent pipe
     private PipeLine next;
     // Previous adjacent pipe
@@ -50,15 +56,15 @@ public class PipeLine {
     public void setImage(PipeLineType type) {
         switch(type){
             case HORIZONTAL:
-                image = "=";
+                image = colorAmarillo+"="+resetColor;
                 break;
 
             case VERTICAL:
-                image = "\u2551";
+                image = colorRojo+"\u2551"+resetColor;
                 break;
 
             case CIRCULAR:
-                image = "o";
+                image =colorVerde+"o"+resetColor;
                 break;
             
             case VOID:
@@ -66,11 +72,11 @@ public class PipeLine {
                 break;
             
             case SOURCE:
-                image = "F";
+                image = colorAzul+"F"+resetColor;
                 break;
 
             case DRAINAGE:
-                image = "D";
+                image = colorRojo+"D"+resetColor;
                 break;
         }
     }
