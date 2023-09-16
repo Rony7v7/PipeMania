@@ -17,6 +17,7 @@ public class PipeLine {
     static String colorAzul="\u001B[36m";
     static String colorVerde="\u001B[32m";
     static String colorAmarillo="\u001B[33m";
+    static String colorRGBgris="\u001B[38;5;8m";
 
     // Next adjacent pipe
     private PipeLine next;
@@ -68,7 +69,7 @@ public class PipeLine {
                 break;
             
             case VOID:
-                image = "X";
+                image = colorRGBgris+"X"+resetColor;
                 break;
             
             case SOURCE:

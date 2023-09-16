@@ -26,6 +26,8 @@ public class Main {
     static String colorAzul="\u001B[36m";
     static String colorAmarillo="\u001B[33m";
     static String colorRojo= "\u001B[31m";
+    static String colorRGB="\u001B[38;5;12m";
+
     
 
 
@@ -53,7 +55,7 @@ public class Main {
      * @return The opction selected for the user
      */
     public int showMainMenu() {
-        System.out.println(colorMorado+"╔══════════════════════╗\n"
+        System.out.println(colorRGB+"\n╔══════════════════════╗\n"
                                      +"║"+resetColor+"      Pipe"+colorMorado+"-"+resetColor+"Mania      "+colorMorado+"║\n"
                                     + "╚══════════════════════╝"+resetColor);
         System.out.println(colorVerde+"1."+resetColor+" Nueva partida");
@@ -235,6 +237,8 @@ public class Main {
                 column = input.nextInt();
                 input.nextLine();
                 System.out.println(colorMorado+"\n══════════════════════════════════"+resetColor);
+                System.out.println(colorRGB+"            PIPE"+resetColor+"-"+colorRGB+"MANIA"+resetColor);
+                System.out.println(colorMorado+"══════════════════════════════════"+resetColor);
                 controller.insertPipeLine(option, row, column);
                 option = 5;
             }
