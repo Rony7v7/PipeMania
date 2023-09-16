@@ -106,8 +106,7 @@ public class ScoreTable {
      * @return The representation of the scores table in the form of a text string
      */
     public String toString() {
-        String view = "SCORE TABLE\n"+
-                      getPostorder(root);
+        String view = getPostorder(root);
         return view;
     }
 
